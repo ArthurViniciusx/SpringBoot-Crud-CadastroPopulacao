@@ -1,4 +1,4 @@
-package com.pmaq.marquesconsult.controlers;
+package com.pmaq.marquesconsult.resouces;
 
 import java.util.List;
 
@@ -15,20 +15,21 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pmaq.marquesconsult.domain.Populacao;
 import com.pmaq.marquesconsult.repositorys.PopulacaoRepository;
 
-@RestController
-@RequestMapping(value = "/api")
-public class PopulacaoControler {
+@
 
+RestController
+@RequestMapping(value = "/api")
+public class PopulacaoResource {
 	@Autowired
 	PopulacaoRepository populacaoRepository;
 
 	@GetMapping("/populacao")
-	public List<Populacao> lista() {
+	public List<Populacao> listaPopulacao() {
 		return populacaoRepository.findAll();
 	}
 
 	@GetMapping("/populacao/{id}")
-	public Populacao listaPopulacaoporID(@PathVariable(value = "id") long id) {
+	public Populacao listaPopulacaoId(@PathVariable(value = "id") long id) {
 		return populacaoRepository.findById(id);
 	}
 
@@ -37,14 +38,13 @@ public class PopulacaoControler {
 		return populacaoRepository.save(populacao);
 	}
 
-	@PutMapping("/populacao")
-	public Populacao atualizaPopulacao(@RequestBody Populacao populacao) {
-		return populacaoRepository.save(populacao);
-	}
-
 	@DeleteMapping("/populacao")
 	public void deletaPopulacao(@RequestBody Populacao populacao) {
 		populacaoRepository.delete(populacao);
 	}
 
+	@PutMapping("/populacao")
+	public Populacao atualizaPopulacao(@RequestBody Populacao populacao) {
+		return populacaoRepository.save(populacao);
+	}
 }
